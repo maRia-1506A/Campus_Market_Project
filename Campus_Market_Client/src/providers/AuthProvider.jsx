@@ -1,4 +1,4 @@
-import { createContext, use, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
     createUserWithEmailAndPassword,
     onAuthStateChanged,
@@ -21,25 +21,25 @@ const AuthProvider = ({ children }) => {
 
     // Create user with email and password
     const createUser = (email, password) => {
-        setLoading = true;
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
     // Sign in with email and password
     const signIn = (email, password) => {
         setLoading(true);
-        signInWithEmailAndPassword(auth, email, password);
+        return signInWithEmailAndPassword(auth, email, password);
     };
 
     // Sign in with google
     const signInWithGoogle = () => {
         setLoading(true);
-        signInWithPopup(auth, googleProvider);
+        return signInWithPopup(auth, googleProvider);
     };
 
     // update user profile
     const updateUserProfile = (name, photo) => {
-        return updateProfile(auth.currentUser, {
+        return updateUserProfile(auth.currentUser, {
             displayName: name, photoURL: photo
         });
     };
