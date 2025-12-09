@@ -17,7 +17,7 @@ const ProductDetails = () => {
         queryFn: async () => {
             const response = await axios.get(`http://localhost:5001/products/${id}`);
 
-            // Track view
+
             if (user && user.email !== response.data.sellerEmail) {
                 await axios.post(`http://localhost:5001/products/${id}/view`, {
                     userEmail: user.email
@@ -82,8 +82,7 @@ const ProductDetails = () => {
 
             <div className="max-w-7xl mt-20 px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Product Image */}
-                    {/* Product Image */}
+
                     <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl bg-base-100">
                         <img
                             src={product.image}
@@ -91,14 +90,14 @@ const ProductDetails = () => {
                             className="w-full h-auto max-h-[600px] object-contain mx-auto"
                         />
 
-                        {/* Category Badge */}
+
                         <div className="absolute top-6 left-6">
                             <span className="bg-violet-600 text-white px-6 py-2 rounded-full font-medium">
                                 {product.category}
                             </span>
                         </div>
 
-                        {/* Status Badge */}
+
                         <div className="absolute top-6 right-6">
                             <span className="bg-emerald-500 text-white px-6 py-2 rounded-full font-medium">
                                 Available for Exchange
@@ -106,7 +105,7 @@ const ProductDetails = () => {
                         </div>
                     </div>
 
-                    {/* Product Info */}
+
                     <div className="space-y-6">
                         <div className="bg-base-100 rounded-lg shadow-xl p-6">
                             <div className="flex items-center gap-2 mb-2">
@@ -126,7 +125,7 @@ const ProductDetails = () => {
                             </button>
                         </div>
 
-                        {/* Seller Info */}
+
                         <div className="bg-base-100 rounded-lg shadow-xl p-6">
                             <h3 className="text-xl font-bold mb-4">Seller Information</h3>
                             <div className="space-y-3">
@@ -147,7 +146,7 @@ const ProductDetails = () => {
                             </div>
                         </div>
 
-                        {/* Additional Details */}
+
                         <div className="bg-base-100 rounded-lg shadow-xl p-6">
                             <h3 className="text-xl font-bold mb-4">Additional Details</h3>
                             <div className="grid grid-cols-2 gap-4">

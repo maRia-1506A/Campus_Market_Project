@@ -88,7 +88,7 @@ const Register = () => {
                     <h2 className="text-3xl font-bold text-center mb-6">Create Account</h2>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        {/* Name Field */}
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text font-semibold">Full Name</span>
@@ -107,7 +107,7 @@ const Register = () => {
                             )}
                         </div>
 
-                        {/* Email Field */}
+
                         <div className="form-control mt-4">
                             <label className="label">
                                 <span className="label-text font-semibold">Email</span>
@@ -132,7 +132,7 @@ const Register = () => {
                             )}
                         </div>
 
-                        {/* Password Field */}
+
                         <div className="form-control mt-4">
                             <label className="label">
                                 <span className="label-text font-semibold">Password</span>
@@ -161,7 +161,7 @@ const Register = () => {
                             )}
                         </div>
 
-                        {/* Confirm Password Field */}
+
                         <div className="form-control mt-4">
                             <label className="label">
                                 <span className="label-text font-semibold">Confirm Password</span>
@@ -184,7 +184,7 @@ const Register = () => {
                             )}
                         </div>
 
-                        {/* Submit Button */}
+
                         <div className="form-control mt-6">
                             <button type="submit" className="btn btn-primary">
                                 Register
@@ -192,10 +192,10 @@ const Register = () => {
                         </div>
                     </form>
 
-                    {/* Divider */}
+
                     <div className="divider">OR</div>
 
-                    {/* Google Sign In */}
+
                     <button
                         onClick={handleGoogleSignIn}
                         className="btn btn-outline w-full"
@@ -204,7 +204,7 @@ const Register = () => {
                         Continue with Google
                     </button>
 
-                    {/* Login Link */}
+
                     <p className="text-center mt-4">
                         Already have an account?{' '}
                         <Link to="/login" className="text-primary font-semibold hover:underline">

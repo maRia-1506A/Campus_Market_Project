@@ -8,8 +8,7 @@ import ProductDetails from '../pages/ProductDetails';
 import SellItem from '../pages/SellItem';
 import MyListings from '../pages/MyListings';
 import Profile from '../pages/Profile';
-// import Chat from '../pages/Chat';
-// import Messages from '../pages/Messages';
+
 import PrivateRoute from './PrivateRoute';
 import ErrorPage from '../pages/ErrorPage';
 
@@ -45,7 +44,7 @@ const router = createBrowserRouter([
                     <PrivateRoute>
                         <SellItem />
                     </PrivateRoute>
-                ) 
+                )
             },
             {
                 path: '/my-listings',
@@ -63,22 +62,7 @@ const router = createBrowserRouter([
                     </PrivateRoute>
                 )
             }
-            // {
-            //     path: '/chat/:productId',
-            //     element: (
-            //         <PrivateRoute>
-            //             <Chat />
-            //         </PrivateRoute>
-            //     )
-            // },
-            // {
-            //     path: '/messages',
-            //     element: (
-            //         <PrivateRoute>
-            //             <Messages />
-            //         </PrivateRoute>
-            //     )
-            // }
+
         ]
     }
 ]);

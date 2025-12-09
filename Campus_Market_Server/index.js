@@ -1,8 +1,4 @@
-/**
- * Campus Market Server
- * Clean beginner-friendly Express + MongoDB backend.
- * All routes are public.
- */
+
 
 require('dotenv').config();
 const express = require('express');
@@ -13,14 +9,14 @@ const localProducts = require('./products.json');
 const app = express();
 const port = process.env.PORT || 5001;
 
-// Middleware
+
 app.use(cors());
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_CLUSTER}/?appName=Cluster0`;
 const client = new MongoClient(uri, {});
 
-// Simple helper to connect once and reuse collections
+
 let productCollection, userCollection, chatCollection;
 async function initDb() {
   try {
@@ -36,14 +32,7 @@ async function initDb() {
 }
 initDb();
 
-/* =============================
-   Users (Public Routes)
-   - POST /users        -> create if not exist
-   - GET /users/:email  -> get user by email
-   - PUT /users/:email  -> update profile (upsert)
-   - DELETE /users/:email -> delete account
-   =============================
-*/
+
 app.post('/users', async (req, res) => {
   try {
     const user = req.body;
@@ -105,22 +94,12 @@ app.get('/user-by-email/:email', async (req, res) => {
   res.send(user || {});
 });
 
-/* =============================
-   Products CRUD (Public Routes)
-   - GET /products         -> filter & sort via query
-   - GET /products/:id
-   - POST /products        -> create product
-   - PUT /products/:id     -> update product
-   - DELETE /products/:id  -> delete product
-   - GET /my-products/:email -> products by seller
-   - POST /products/:id/view -> track view
-   =============================
-*/
+
 app.get('/products', async (req, res) => {
   try {
     const { category, search, sort } = req.query;
 
-    // DB Connected
+
     if (productCollection) {
       const q = {};
       if (category && category !== 'All') q.category = category;
@@ -134,7 +113,7 @@ app.get('/products', async (req, res) => {
       return res.send(products);
     }
 
-    // Fallback: Local Data
+
     let filtered = [...localProducts];
     if (category && category !== 'All') {
       filtered = filtered.filter(p => p.category === category);
@@ -146,7 +125,7 @@ app.get('/products', async (req, res) => {
 
     if (sort === 'price-low') filtered.sort((a, b) => a.price - b.price);
     else if (sort === 'price-high') filtered.sort((a, b) => b.price - a.price);
-    else filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // newest
+    else filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     res.send(filtered);
   } catch (e) {
@@ -162,7 +141,7 @@ app.get('/products/:id', async (req, res) => {
       const product = await productCollection.findOne({ _id: new ObjectId(id) });
       return res.send(product || {});
     }
-    // Fallback
+
     const product = localProducts.find(p => p._id === id);
     res.send(product || {});
   } catch (e) {
@@ -233,14 +212,14 @@ app.post('/products/:id/view', async (req, res) => {
   }
 });
 
-/* Health */
+
 app.get('/', (req, res) => res.send('Campus Market Server is running'));
 
 app.get('/db-status', (req, res) => {
   res.send({ connected: !!productCollection, usingFallback: !productCollection });
 });
 
-/* Start server */
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
   console.log('Verifying DB connection (Attempt 2)...');

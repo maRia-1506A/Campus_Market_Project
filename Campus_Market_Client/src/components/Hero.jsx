@@ -1,35 +1,4 @@
-// import { Link } from 'react-router-dom';
-// import { FaSearch, FaShoppingBag } from 'react-icons/fa';
 
-// const Hero = () => {
-//     return (
-//         <div className="hero min-h-[500px] bg-gradient-to-r from-primary to-secondary">
-//             <div className="hero-content text-center text-white">
-//                 <div className="max-w-3xl">
-//                     <h1 className="text-5xl font-bold mb-6">
-//                         Welcome to Campus Market
-//                     </h1>
-//                     <p className="text-xl mb-8">
-//                         Buy, sell, and exchange items with fellow students.
-//                         Your trusted campus marketplace.
-//                     </p>
-//                     <div className="flex gap-4 justify-center flex-wrap">
-//                         <Link to="/marketplace" className="btn btn-lg bg-white text-primary hover:bg-gray-100">
-//                             <FaSearch className="mr-2" />
-//                             Browse Items
-//                         </Link>
-//                         <Link to="/sell" className="btn btn-lg btn-outline text-white border-white hover:bg-white hover:text-primary">
-//                             <FaShoppingBag className="mr-2" />
-//                             Sell an Item
-//                         </Link>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Hero;
 
 
 import { Link } from "react-router-dom";
@@ -39,7 +8,6 @@ import heroBg from "../assets/hero-bg.png";
 const Hero = () => {
   return (
     <div className="hero min-h-[600px] bg-cover bg-center relative" style={{ backgroundImage: `url(${heroBg})` }}>
-      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
       <div className="hero-content text-center text-white relative z-10">

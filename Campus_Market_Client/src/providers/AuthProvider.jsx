@@ -18,32 +18,32 @@ const AuthProvider = ({ children }) => {
 
     const googleProvider = new GoogleAuthProvider();
 
-    // Create user with email and password
+
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
-    // Sign in with email and password
+
     const signIn = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     };
 
-    // Sign in with google
+
     const signInWithGoogle = () => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider);
     };
 
-    // update user profile
+
     const updateUserProfile = (name, photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
         });
     };
 
-    //logout
+
     const logOut = () => {
         setLoading(true);
         return signOut(auth);

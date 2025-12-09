@@ -14,7 +14,7 @@ const Login = () => {
 
     const form = location.state?.form?.pathname || '/';
 
-    //email login func
+
     const onSubmit = async (data) => {
         try {
             await signIn(data.email, data.password);
@@ -38,7 +38,7 @@ const Login = () => {
         }
     };
 
-    // google sign in func 
+
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithGoogle();
@@ -84,7 +84,7 @@ const Login = () => {
                     <h2 className="text-3xl font-bold text-center mb-6">Welcome Back!</h2>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        {/* Email Field */}
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text font-semibold">Email</span>
@@ -109,7 +109,7 @@ const Login = () => {
                             )}
                         </div>
 
-                        {/* Password Field */}
+
                         <div className="form-control mt-4">
                             <label className="label">
                                 <span className="label-text font-semibold">Password</span>
@@ -133,7 +133,7 @@ const Login = () => {
                             </label>
                         </div>
 
-                        {/* Submit Button */}
+
                         <div className="form-control mt-6">
                             <button type="submit" className="btn btn-primary">
                                 Login
@@ -141,10 +141,10 @@ const Login = () => {
                         </div>
                     </form>
 
-                    {/* Divider */}
+
                     <div className="divider">OR</div>
 
-                    {/* Google Sign In */}
+
                     <button
                         onClick={handleGoogleSignIn}
                         className="btn btn-outline w-full"
@@ -153,7 +153,7 @@ const Login = () => {
                         Continue with Google
                     </button>
 
-                    {/* Register Link */}
+
                     <p className="text-center mt-4">
                         Don't have an account?{' '}
                         <Link to="/register" className="text-primary font-semibold hover:underline">
