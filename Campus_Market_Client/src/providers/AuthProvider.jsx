@@ -9,7 +9,6 @@ import {
     signInWithPopup
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
-import axios from "axios";
 
 export const AuthContext = createContext(null);
 
@@ -39,7 +38,7 @@ const AuthProvider = ({ children }) => {
 
     // update user profile
     const updateUserProfile = (name, photo) => {
-        return updateUserProfile(auth.currentUser, {
+        return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
         });
     };
@@ -50,42 +49,25 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     };
 
-    // observe auth stage change    
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-
-            // Get JWT token when user logs in
-            if (currentUser) {
-                const userInfo = { email: currentUser.email };
-                axios.post("http://localhost:5001/jwt", userInfo)
-                    .then(res => {
-                        if (res.data.token) {
-                            localStorage.setItem
-                                ('access-token', res.data.token);
-                        }
-                    })
-                    .catch(error=>console.error('JWT Error:', error));
-            } else {
-                localStorage.removeItem('access-token');
-            }
-
             setLoading(false);
         });
-        return()=> unsubscribe();
+        return () => unsubscribe();
     }, []);
 
-    const authInfo={
+    const authInfo = {
         user,
         loading,
         createUser,
         signIn,
         signInWithGoogle,
         logOut,
-        updateProfile
+        updateUserProfile
     };
 
-    return(
+    return (
         <AuthContext.Provider value={authInfo}>
             {children}
         </AuthContext.Provider>

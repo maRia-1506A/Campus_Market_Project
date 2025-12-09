@@ -35,7 +35,7 @@ const Navbar = () => {
     isActive ? "text-primary font-bold" : "";
 
   return (
-    <div className="navbar bg-base-100 shadow-lg px-4 lg:px-8">
+    <div className="navbar bg-base-100 shadow-lg px-4 lg:px-8 fixed top-0 left-0 w-full z-50">
 
       <div className="navbar-start">
         <div className="dropdown lg:hidden">
@@ -66,7 +66,7 @@ const Navbar = () => {
 
         <Link to="/" className="btn btn-ghost text-xl font-bold">
           <FaShoppingBag className="text-primary mr-2" />
-          Campus<span className="text-primary">Market</span>
+          Campus Market
         </Link>
       </div>
 

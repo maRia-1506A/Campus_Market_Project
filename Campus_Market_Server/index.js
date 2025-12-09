@@ -1,138 +1,247 @@
-const express = require("express");
-const cors = require("cors");
-const jwt = require("jsonwebtoken");
-const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-require("dotenv").config();
+/**
+ * Campus Market Server
+ * Clean beginner-friendly Express + MongoDB backend.
+ * All routes are public.
+ */
 
-//server
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const { MongoClient, ObjectId } = require('mongodb');
+const localProducts = require('./products.json');
+
 const app = express();
 const port = process.env.PORT || 5001;
 
-//middleware
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-const uri =
-  "mongodb+srv://maria104:m0ng0db@cluster0.8ks1nbl.mongodb.net/?appName=Cluster0";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_CLUSTER}/?appName=Cluster0`;
+const client = new MongoClient(uri, {});
 
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
-
-async function run() {
+// Simple helper to connect once and reuse collections
+let productCollection, userCollection, chatCollection;
+async function initDb() {
   try {
-    // await client.connect();
-    const database = client.db("CampusMarket");
-    const productCollection = database.collection("products");
-    const userCollection = database.collection("users");
-    const chatCollection = database.collection("chats");
-
-    // JWT middleware
-    const verifyToken = (req, res, next) => {
-      if (!req.headers.authorization) {
-        return res.status(401).send({ message: "unauthorized access" });
-      }
-      const token = req.headers.authorization.split(" ")[1];
-      jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
-        if (err) {
-          return res.status(401).send({ message: "unauthorized access" });
-        }
-        req.decoded = decoded;
-        next();
-      });
-    };
-
-    // AWT related api
-    app.post("/jwt", async (req, res) => {
-      const user = req.body;
-      const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: "1h",
-      });
-      res.send({ token });
-    });
-
-    // user related api
-    // create new user
-    app.post("/users", async (req, res) => {
-      const user = req.body;
-      const query = { email: user.email };
-      const existingUser = await userCollection.findOne(query);
-      if (existingUser) {
-        return res.send({ message: "user already exists", insertedID: null });
-      }
-      const result = await userCollection.insertOne(user);
-      res.send(result);
-    });
-
-    //get user by email(protected)
-    app.get("/users/:email", verifyToken, async (req, res) => {
-      const email = req.params.email;
-      if (email !== req.decoded.email) {
-        return res.status(403).send({ message: "forbidden access" });
-      }
-      const query = { email: email };
-      const user = await userCollection.findOne(query);
-      res.send(user);
-    });
-
-    // update user profile (protected)
-    app.put("/users/:email", verifyToken, async (req, res) => {
-      const email = req.params.email;
-      if (email !== req.decoded.email) {
-        return res.status(403).send({ message: "forbidden access" });
-      }
-      const filter = { email: email };
-      const options = { upsert: true };
-      const updateDoc = {
-        $set: {
-          name: req.body.name,
-          phone: req.body.phone,
-          university: req.body.university,
-          avatar: req.body.avatar,
-          status: req.body.status || "offline",
-        },
-      };
-      const result = await userCollection.updateOne(filter, updateDoc, options);
-      res.send(result);
-    });
-
-    //delete user account (protected)
-    app.delete("/users/:email", verifyToken, async (req, res) => {
-      const email = req.params.email;
-      if (email !== req.decoded.email) {
-        return res.status(403).send({ message: "forbidden access" });
-      }
-      const query = { email: email };
-      const user = await userCollection.deleteOne(query);
-      res.send(user);
-    });
-
-    // for chat display (get user info by email)
-    app.get("/user-by-email/:email", async (req, res) => {
-      const email = req.params.email;
-      const query = { email: email };
-      const user = await userCollection.findOne(query, {
-        projection: { name: 1, email: 1, avatar: 1, status: 1 },
-      });
-      res.send(user || {});
-    });
-
-    console.log("Connected to MongoDB!");
-  } catch (error) {
-    console.error(error);
+    await client.connect();
+    const db = client.db('CampusMarket');
+    productCollection = db.collection('products');
+    userCollection = db.collection('users');
+    chatCollection = db.collection('chats');
+    console.log('Connected to MongoDB!');
+  } catch (err) {
+    console.log('MongoDB connection failed. Using local fallback data.');
   }
 }
+initDb();
 
-run().catch(console.dir);
+/* =============================
+   Users (Public Routes)
+   - POST /users        -> create if not exist
+   - GET /users/:email  -> get user by email
+   - PUT /users/:email  -> update profile (upsert)
+   - DELETE /users/:email -> delete account
+   =============================
+*/
+app.post('/users', async (req, res) => {
+  try {
+    const user = req.body;
+    if (!user?.email) return res.status(400).send({ message: 'Email is required' });
 
-app.get("/", (req, res) => {
-  res.send("Campus Market Server is running");
+    const existing = await userCollection.findOne({ email: user.email });
+    if (existing) return res.send({ message: 'user already exists' });
+
+    const result = await userCollection.insertOne(user);
+    res.send(result);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({ message: 'Server error' });
+  }
 });
 
+app.get('/users/:email', async (req, res) => {
+  try {
+    const email = req.params.email;
+    const user = await userCollection.findOne({ email });
+    res.send(user || {});
+  } catch (e) {
+    res.status(500).send({ message: 'Server error' });
+  }
+});
+
+app.put('/users/:email', async (req, res) => {
+  try {
+    const email = req.params.email;
+    const update = {
+      $set: {
+        name: req.body.name,
+        phone: req.body.phone,
+        university: req.body.university,
+        avatar: req.body.avatar,
+        status: req.body.status || 'offline'
+      }
+    };
+    const result = await userCollection.updateOne({ email }, update, { upsert: true });
+    res.send(result);
+  } catch (e) {
+    res.status(500).send({ message: 'Server error' });
+  }
+});
+
+app.delete('/users/:email', async (req, res) => {
+  try {
+    const email = req.params.email;
+    const result = await userCollection.deleteOne({ email });
+    res.send(result);
+  } catch (e) {
+    res.status(500).send({ message: 'Server error' });
+  }
+});
+
+app.get('/user-by-email/:email', async (req, res) => {
+  const email = req.params.email;
+  const user = await userCollection.findOne({ email }, { projection: { name: 1, email: 1, avatar: 1, status: 1 } });
+  res.send(user || {});
+});
+
+/* =============================
+   Products CRUD (Public Routes)
+   - GET /products         -> filter & sort via query
+   - GET /products/:id
+   - POST /products        -> create product
+   - PUT /products/:id     -> update product
+   - DELETE /products/:id  -> delete product
+   - GET /my-products/:email -> products by seller
+   - POST /products/:id/view -> track view
+   =============================
+*/
+app.get('/products', async (req, res) => {
+  try {
+    const { category, search, sort } = req.query;
+
+    // DB Connected
+    if (productCollection) {
+      const q = {};
+      if (category && category !== 'All') q.category = category;
+      if (search) q.title = { $regex: search, $options: 'i' };
+
+      let sortOption = { createdAt: -1 };
+      if (sort === 'price-low') sortOption = { price: 1 };
+      if (sort === 'price-high') sortOption = { price: -1 };
+
+      const products = await productCollection.find(q).sort(sortOption).toArray();
+      return res.send(products);
+    }
+
+    // Fallback: Local Data
+    let filtered = [...localProducts];
+    if (category && category !== 'All') {
+      filtered = filtered.filter(p => p.category === category);
+    }
+    if (search) {
+      const lowerSearch = search.toLowerCase();
+      filtered = filtered.filter(p => p.title.toLowerCase().includes(lowerSearch));
+    }
+
+    if (sort === 'price-low') filtered.sort((a, b) => a.price - b.price);
+    else if (sort === 'price-high') filtered.sort((a, b) => b.price - a.price);
+    else filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // newest
+
+    res.send(filtered);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({ message: 'Server error' });
+  }
+});
+
+app.get('/products/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (productCollection) {
+      const product = await productCollection.findOne({ _id: new ObjectId(id) });
+      return res.send(product || {});
+    }
+    // Fallback
+    const product = localProducts.find(p => p._id === id);
+    res.send(product || {});
+  } catch (e) {
+    res.status(400).send({ message: 'Invalid id' });
+  }
+});
+
+app.post('/products', async (req, res) => {
+  try {
+    const product = req.body;
+    product.createdAt = new Date();
+    product.views = 0;
+    const result = await productCollection.insertOne(product);
+    res.send(result);
+  } catch (e) {
+    res.status(500).send({ message: 'Server error' });
+  }
+});
+
+app.put('/products/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const update = {
+      $set: {
+        title: req.body.title,
+        price: req.body.price,
+        category: req.body.category,
+        condition: req.body.condition,
+        description: req.body.description,
+        image: req.body.image,
+        location: req.body.location,
+      }
+    };
+    const result = await productCollection.updateOne({ _id: new ObjectId(id) }, update);
+    res.send(result);
+  } catch (e) {
+    res.status(400).send({ message: 'Invalid id' });
+  }
+});
+
+app.delete('/products/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const result = await productCollection.deleteOne({ _id: new ObjectId(id) });
+    res.send(result);
+  } catch (e) {
+    res.status(400).send({ message: 'Invalid id' });
+  }
+});
+
+app.get('/my-products/:email', async (req, res) => {
+  try {
+    const email = req.params.email;
+    const products = await productCollection.find({ sellerEmail: email }).toArray();
+    res.send(products);
+  } catch (e) {
+    res.status(500).send({ message: 'Server error' });
+  }
+});
+
+app.post('/products/:id/view', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const result = await productCollection.updateOne({ _id: new ObjectId(id) }, { $inc: { views: 1 } });
+    res.send(result);
+  } catch (e) {
+    res.status(400).send({ message: 'Invalid id' });
+  }
+});
+
+/* Health */
+app.get('/', (req, res) => res.send('Campus Market Server is running'));
+
+app.get('/db-status', (req, res) => {
+  res.send({ connected: !!productCollection, usingFallback: !productCollection });
+});
+
+/* Start server */
 app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
+  console.log(`Server running on port ${port}`);
+  console.log('Verifying DB connection (Attempt 2)...');
 });

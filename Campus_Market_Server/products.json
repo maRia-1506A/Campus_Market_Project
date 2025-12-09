@@ -1,0 +1,308 @@
+[
+    {
+        "price": 45,
+        "category": "Books",
+        "condition": "Like New",
+        "description": "Used for one semester only. No markings or highlights inside. Comes with the original CD and access code (unused). Perfect for MAT101 and MAT102 courses.",
+        "image": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "John Doe",
+            "email": "john@example.com",
+            "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-20T10:00:00Z",
+        "status": "Active",
+        "views": 12,
+        "title": "Calculus: Early Transcendentals (8th Edition)",
+        "_id": "k6eme377pqchjsputbg5z5"
+    },
+    {
+        "price": 55,
+        "category": "Books",
+        "condition": "Good",
+        "description": "Complete organic chemistry textbook with practice problems. Some highlighting but all pages intact. Great for CHM201.",
+        "image": "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Emily Chen",
+            "email": "emily@example.com",
+            "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-18T14:30:00Z",
+        "status": "Active",
+        "views": 28,
+        "title": "Organic Chemistry Textbook (3rd Edition)",
+        "_id": "oawpjx1ex5nc50qx708jj"
+    },
+    {
+        "price": 20,
+        "category": "Electronics",
+        "condition": "Good",
+        "description": "Fully functional scientific calculator. Solar panel works perfectly. Some minor scratches on the back case but screen is clear.",
+        "image": "https://images.unsplash.com/photo-1564466809058-bf4114d55352?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Jane Smith",
+            "email": "jane@example.com",
+            "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-19T14:30:00Z",
+        "status": "Active",
+        "views": 45,
+        "title": "Scientific Calculator fx-991EX",
+        "_id": "l5cnm38vcpp3hzle892p4z"
+    },
+    {
+        "price": 550,
+        "category": "Electronics",
+        "condition": "Like New",
+        "description": "128GB Space Gray. Great for digital note-taking. Comes with original box and charger. Screen protector installed since day one.",
+        "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Tony Stark",
+            "email": "tony@example.com",
+            "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-15T11:20:00Z",
+        "status": "Active",
+        "views": 340,
+        "title": "iPad Pro 11-inch (2022)",
+        "_id": "d3hsd0puigilhp6b70xg7a"
+    },
+    {
+        "price": 850,
+        "category": "Electronics",
+        "condition": "Good",
+        "description": "M1 chip, 8GB RAM, 256GB SSD. Battery health at 92%. Light scratches on bottom. Comes with charger.",
+        "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Alex Rivera",
+            "email": "alex@example.com",
+            "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-22T09:00:00Z",
+        "status": "Active",
+        "views": 189,
+        "title": "MacBook Pro 13\" (2021)",
+        "_id": "o3pvnlrxji6y5kns7bkpo"
+    },
+    {
+        "price": 75,
+        "category": "Furniture",
+        "condition": "Good",
+        "description": "Comfortable mesh-back office chair with adjustable height and armrests. Perfect for long study sessions. Minor wear on seat cushion.",
+        "image": "https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Rachel Green",
+            "email": "rachel@example.com",
+            "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-18T16:45:00Z",
+        "status": "Active",
+        "views": 67,
+        "title": "Ergonomic Desk Chair",
+        "_id": "qzb1te773ipxdv75akr59"
+    },
+    {
+        "price": 60,
+        "category": "Furniture",
+        "condition": "Like New",
+        "description": "140x65cm study desk with pull-out panel. Barely used, moving out of dorm. Buyer must pick up.",
+        "image": "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Monica Geller",
+            "email": "monica@example.com",
+            "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-21T08:30:00Z",
+        "status": "Active",
+        "views": 92,
+        "title": "IKEA MALM Desk - White",
+        "_id": "ybdj69vtlk9ji04akiks7"
+    },
+    {
+        "price": 35,
+        "category": "Furniture",
+        "condition": "Good",
+        "description": "Wooden bookshelf, perfect for dorm rooms. Easy to assemble and disassemble. Some scratches but sturdy.",
+        "image": "https://images.unsplash.com/photo-1594620302200-9a762244a156?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Ross Geller",
+            "email": "ross@example.com",
+            "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-17T12:00:00Z",
+        "status": "Active",
+        "views": 41,
+        "title": "Compact Bookshelf - 4 Tier",
+        "_id": "gpj4ok2es1tmouujerjgf"
+    },
+    {
+        "price": 25,
+        "category": "Clothing",
+        "condition": "Like New",
+        "description": "Official university hoodie in navy blue. Size Large. Worn only twice, too big for me. No stains or damage.",
+        "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Chandler Bing",
+            "email": "chandler@example.com",
+            "avatar": "https://images.unsplash.com/photo-1599566150163-29194dcabd36?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-20T15:00:00Z",
+        "status": "Active",
+        "views": 33,
+        "title": "University Hoodie - Size L",
+        "_id": "eshvixb7b6d16mk8z2rvcz"
+    },
+    {
+        "price": 20,
+        "category": "Clothing",
+        "condition": "New",
+        "description": "White lab coat, size Medium. Required for PHY201 and BIO labs. Never worn, still has tags.",
+        "image": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Sheldon Cooper",
+            "email": "sheldon@example.com",
+            "avatar": "https://images.unsplash.com/photo-1463453091185-61582044d556?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-22T08:00:00Z",
+        "status": "Active",
+        "views": 15,
+        "title": "Lab Coat - Size M",
+        "_id": "24p700r1oauy69rww53vjf"
+    },
+    {
+        "price": 45,
+        "category": "Sports",
+        "condition": "Good",
+        "description": "Nike Air running shoes, Men's size 10. Used for one semester of track. Still have great cushioning.",
+        "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Joey Tribbiani",
+            "email": "joey@example.com",
+            "avatar": "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-19T10:30:00Z",
+        "status": "Active",
+        "views": 78,
+        "title": "Running Shoes - Nike Air (Size 10)",
+        "_id": "1o8nnct8u4vem8cbygdvxp"
+    },
+    {
+        "price": 15,
+        "category": "Sports",
+        "condition": "Good",
+        "description": "Official size Spalding basketball. Great grip, no air leaks. Perfect for pickup games on campus.",
+        "image": "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Mike Wheeler",
+            "email": "mike@example.com",
+            "avatar": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-16T14:00:00Z",
+        "status": "Active",
+        "views": 52,
+        "title": "Basketball - Spalding Official",
+        "_id": "f6rcm44977r9kurd7ysuh"
+    },
+    {
+        "price": 18,
+        "category": "Sports",
+        "condition": "Like New",
+        "description": "6mm thick yoga mat with carrying strap. Anti-slip surface. Used for one yoga class, changed sports.",
+        "image": "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Phoebe Buffay",
+            "email": "phoebe@example.com",
+            "avatar": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-21T11:00:00Z",
+        "status": "Active",
+        "views": 29,
+        "title": "Yoga Mat - Premium Purple",
+        "_id": "g0yfix2q1cvc7omm4dx4"
+    },
+    {
+        "price": 85,
+        "category": "Electronics",
+        "condition": "Like New",
+        "description": "Noise-canceling earbuds with charging case. Original box and accessories included. 8 months old, upgraded to new model.",
+        "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Eleven Hopper",
+            "email": "eleven@example.com",
+            "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-23T09:15:00Z",
+        "status": "Active",
+        "views": 156,
+        "title": "Wireless Earbuds - Sony WF-1000",
+        "_id": "dnvzd96n7oh45ymxibzsxj"
+    },
+    {
+        "price": 22,
+        "category": "Other",
+        "condition": "Good",
+        "description": "LED desk lamp with adjustable brightness and built-in USB charging port. Perfect for late-night study sessions.",
+        "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Dustin Henderson",
+            "email": "dustin@example.com",
+            "avatar": "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-20T16:30:00Z",
+        "status": "Active",
+        "views": 38,
+        "title": "Desk Lamp with USB Port",
+        "_id": "nvy4rzfcjqtcw774dpqxeb"
+    },
+    {
+        "price": 80,
+        "category": "Other",
+        "condition": "Good",
+        "description": "Compact dorm fridge with small freezer compartment. Works perfectly, some cosmetic scratches. Graduating and can't take it.",
+        "image": "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Will Byers",
+            "email": "will@example.com",
+            "avatar": "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-14T13:00:00Z",
+        "status": "Active",
+        "views": 124,
+        "title": "Mini Fridge - 2.7 Cu Ft",
+        "_id": "7o0cszou2qj47a7tnwnwvp"
+    },
+    {
+        "price": 40,
+        "category": "Other",
+        "condition": "Like New",
+        "description": "Single-serve coffee maker, perfect for dorm rooms. Includes reusable K-cup filter. Barely used.",
+        "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Max Mayfield",
+            "email": "max@example.com",
+            "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-22T10:45:00Z",
+        "status": "Active",
+        "views": 67,
+        "title": "Coffee Maker - Keurig K-Mini",
+        "_id": "0yqw85kzgqk4wmaex3fwoj"
+    },
+    {
+        "price": 95,
+        "category": "Clothing",
+        "condition": "Good",
+        "description": "North Face puffer jacket, Men's Medium. Warm and waterproof. Minor fading but no rips or tears.",
+        "image": "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600&h=400&fit=crop",
+        "seller": {
+            "name": "Steve Harrington",
+            "email": "steve@example.com",
+            "avatar": "https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=150&h=150&fit=crop"
+        },
+        "postedDate": "2024-11-17T09:30:00Z",
+        "status": "Active",
+        "views": 89,
+        "title": "Winter Jacket - North Face (Size M)",
+        "_id": "486wpigaefstdav2lylv6n"
+    }
+]
