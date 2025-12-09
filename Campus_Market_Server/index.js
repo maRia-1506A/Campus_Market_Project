@@ -1,5 +1,3 @@
-
-
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -9,13 +7,11 @@ const localProducts = require('./products.json');
 const app = express();
 const port = process.env.PORT || 5001;
 
-
 app.use(cors());
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_CLUSTER}/?appName=Cluster0`;
 const client = new MongoClient(uri, {});
-
 
 let productCollection, userCollection, chatCollection;
 async function initDb() {
@@ -31,7 +27,6 @@ async function initDb() {
   }
 }
 initDb();
-
 
 app.post('/users', async (req, res) => {
   try {

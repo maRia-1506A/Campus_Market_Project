@@ -1,6 +1,3 @@
-
-
-
 import { Link } from "react-router-dom";
 import { FaSearch, FaShoppingBag } from "react-icons/fa";
 import heroBg from "../assets/hero-bg.png";
